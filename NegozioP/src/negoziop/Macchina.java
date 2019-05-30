@@ -70,6 +70,7 @@ public class Macchina implements Runnable{
         } catch (InterruptedException ex) {
             Logger.getLogger(Macchina.class.getName()).log(Level.SEVERE, null, ex);
         }
+       System.out.println("sono "+this.getColore()+"e sto uscendo");
        p.esco(this);
     }
     
