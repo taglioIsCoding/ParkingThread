@@ -45,14 +45,15 @@ public class Parcheggiatore {
         }
         
         while (true){
-            for (int k = 1; k<i; k++){
+            for (int k = 1; k<i && !places.isEmpty(); k++){
            if (Macchine[k]){
                Macchina c =places.get(1);
                System.out.println("sono la macchina "+ m.getColore()+ " me ne sono andata ");
                parcheggio(c);
-               break;
+               
                 }
             }
+            break;
         }
     }
     
