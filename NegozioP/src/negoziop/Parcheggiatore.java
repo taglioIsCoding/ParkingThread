@@ -27,7 +27,7 @@ public class Parcheggiatore {
            }
     }
     
-    public void parcheggio(Macchina m){
+    public synchronized void parcheggio(Macchina m){
         for (int k = 1; k<i; k++){
            if (Macchine[k]){
                Macchine[k] = false;
@@ -38,16 +38,15 @@ public class Parcheggiatore {
            }
         }
         
-        if (m.isPar()==false){
-            places.add(m);
-            System.out.println("sono la macchina "+ m.getColore()+ " e sono in coda ");
-            try {
-                wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Parcheggiatore.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            parcheggio(m);
-        }
+        
+         if (m.isPar()==false){
+            riprovaci(m);
+        }   
+        
+        
+        
+            
+        
         
         /*
         while (true){
@@ -67,12 +66,33 @@ public class Parcheggiatore {
     }
     
     
+    public synchronized void riprovaci(Macchina m)
+    {
+        places.add(m);
+            System.out.println("sono la macchina "+ m.getColore()+ " e sono in coda ");
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Parcheggiatore.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (places.indexOf(m) == 0)
+            {
+              parcheggio(m);
+              places.remove(0);
+            }
+            else
+                riprovaci(m);
+    }
+    
     public synchronized void esco(Macchina m){
             System.out.println("sono "+m.getColore()+"e sono uscito");
             Macchine[m.getnPar()] = true;
             m.setPar(false);
-            //notifyAll();
-            notify();
+            notifyAll();
+            
     }
+    
+    
     
 }

@@ -24,6 +24,7 @@ public class NegozioP {
         Macchina m4 = new Macchina (false , "viola", mario);
         Macchina m5 = new Macchina (false , "gialla", mario);
         Macchina m6 = new Macchina (false , "azzurra", mario);
+        
         Macchina m7 = new Macchina (false , "arancio", mario);
         Macchina m8 = new Macchina (false , "grigia", mario);
         Macchina m9 = new Macchina (false , "nera", mario);
@@ -35,10 +36,13 @@ public class NegozioP {
         Thread t4 = new Thread(m4);
         Thread t5 = new Thread(m5);
         Thread t6 = new Thread(m6);
+        
         Thread t7 = new Thread(m7);
         Thread t8 = new Thread(m8);
         Thread t9 = new Thread(m9);
         Thread t10 = new Thread(m10);
+        
+        
         
         t1.start();
         t2.start();
@@ -46,6 +50,7 @@ public class NegozioP {
         t4.start();
         t5.start();
         t6.start();
+        
         t7.start();
         t8.start();
         t9.start();
